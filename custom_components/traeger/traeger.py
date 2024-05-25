@@ -220,7 +220,7 @@ class traeger:
         _LOGGER.debug(f"Connect Fail Callback. Client:{client} userdata:{userdata}")
         _LOGGER.warning("Grill Connect Failed! MQTT Client Kill.")
         self.hass.async_create_task(self.kill())                    #Shutdown if we arn't getting anywhere.
-    def mqtt_onsubscribe(self, client, userdata, mid, granted_qos):
+    async def mqtt_onsubscribe(self, client, userdata, mid, granted_qos):
         _LOGGER.debug(f"OnSubscribe Callback. Client:{client} userdata:{userdata} mid:{mid} granted_qos:{granted_qos}")
         for grill in self.grills:
             grill_id = grill["thingName"]
